@@ -1,0 +1,134 @@
+{
+  "name": "transbank",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "kzvRG",
+  "actions": [
+    {
+      "server": "0",
+      "varName": "",
+      "info": "1",
+      "storage": "1",
+      "varName2": "ID",
+      "name": "Store Server Info"
+    },
+    {
+      "condition": "0",
+      "comparison": "0",
+      "value": "1",
+      "iftrue": "0",
+      "iftrueVal": "",
+      "iffalse": "2",
+      "iffalseVal": "14",
+      "name": "Check Parameters"
+    },
+    {
+      "info": "0",
+      "infoIndex": "1",
+      "storage": "1",
+      "varName": "transfer",
+      "name": "Store Command Params"
+    },
+    {
+      "storage": "1",
+      "varName": "transfer",
+      "comparison": "0",
+      "iftrue": "0",
+      "iftrueVal": "",
+      "iffalse": "2",
+      "iffalseVal": "14",
+      "name": "Check Variable Type"
+    },
+    {
+      "member": "1",
+      "varName": "",
+      "dataName": "${tempVars(\"ID\")}bal",
+      "defaultVal": "0",
+      "storage": "1",
+      "varName2": "isenouh?",
+      "name": "Store Member Data"
+    },
+    {
+      "storage": "1",
+      "varName": "transfer",
+      "comparison": "3",
+      "value": "tempVars(\"isenouh?\")",
+      "iftrue": "0",
+      "iftrueVal": "",
+      "iffalse": "2",
+      "iffalseVal": "16",
+      "name": "Check Variable"
+    },
+    {
+      "member": "1",
+      "varName": "",
+      "dataName": "${tempVars(\"ID\")}bank",
+      "defaultVal": "0",
+      "storage": "1",
+      "varName2": "banknow",
+      "name": "Store Member Data"
+    },
+    {
+      "FirstNumber": "${tempVars(\"transfer\")}",
+      "info": "0",
+      "SecondNumber": "${tempVars(\"banknow\")}",
+      "storage": "1",
+      "varName": "nowadd",
+      "name": "Basic Math Operation"
+    },
+    {
+      "FirstNumber": "${tempVars(\"isenouh?\")}",
+      "info": "1",
+      "SecondNumber": "${tempVars(\"transfer\")}",
+      "storage": "1",
+      "varName": "nowbal",
+      "name": "Basic Math Operation"
+    },
+    {
+      "member": "1",
+      "varName": "",
+      "dataName": "${tempVars(\"ID\")}bal",
+      "changeType": "0",
+      "value": "tempVars(\"nowbal\")",
+      "name": "Control Member Data"
+    },
+    {
+      "member": "1",
+      "varName": "",
+      "dataName": "${tempVars(\"ID\")}bank",
+      "changeType": "0",
+      "value": "tempVars(\"nowadd\")",
+      "name": "Control Member Data"
+    },
+    {
+      "channel": "0",
+      "varName": "",
+      "message": "**The money has been transfered to your bank account!**",
+      "storage": "0",
+      "varName2": "",
+      "name": "Send Message"
+    },
+    {
+      "name": "End Action Sequence"
+    },
+    {
+      "channel": "0",
+      "varName": "",
+      "message": "**Please mention a valid number in the first param.**",
+      "storage": "0",
+      "varName2": "",
+      "name": "Send Message"
+    },
+    {
+      "name": "End Action Sequence"
+    },
+    {
+      "channel": "0",
+      "varName": "",
+      "message": "**You dont have enough money to transfer $ ${tempVars(\"transfer\")} to your bank account!**",
+      "storage": "0",
+      "varName2": "",
+      "name": "Send Message"
+    }
+  ]
+}
